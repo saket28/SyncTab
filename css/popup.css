@@ -1,35 +1,78 @@
+html,
 body {
-    width: 450px;
-    overflow-x: hidden;
-    font-family: Arial, sans-serif;
-    font-size: 13px;
-    color: #4a4a4a;
-    margin-top: 36px;
+  height: 100%;
+  margin: 0;
+}
+body {
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  color: #4a4a4a;
+  margin-top: 36px;
+  width: 400px;
+}
+body a {
+  text-decoration: none;
 }
 
 header {
-    font-size: 14px;
-    background-color: #F1F1F1;
-    padding: 6px;
-    border-bottom: 1px solid #dddddd;
-    box-shadow: 0 3px 6px #a9a9a9;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    font-weight: bold;
+  background-color: yellow;
+  padding: 5px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  font-weight: bold;
+  border-bottom: 2px solid #a9a9a9;
+}
+header #logo {
+  font-size: 20px;
+  font-family: "Courgette", cursive;
+}
+header #actions {
+  float: right;
+}
+header #actions button {
+  padding: 2px 3px;  
 }
 
-#window_actions {
-    float: right;
+footer {
+  padding: 5px 20px 5px 5px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgb(224, 224, 224);
+}
+footer #search {
+  width: 100%;
+  padding: 5px;
 }
 
-#window_actions a {
-    margin: 0 0 0 6px;
-    text-decoration: none;
-    color: #a9a9a9;
+#main {
+  min-height: 100%;
+  padding: 10px 5px 5px 5px;
+  overflow: auto;
 }
-
-#window_actions a:hover {
-    text-shadow: 1px 1px 1px #393939, 0 0 1em #dddddd;
+#main li > span > span {
+  padding-left: 10px;
+}
+#main > #sessions > ul {
+  padding-left: 0;
+}
+#main > #sessions > ul > li {
+  list-style: none;
+  margin-bottom: 10px;
+}
+#main > #sessions > ul > li > ul {
+  list-style: none;
+  padding-left: 0px;
+}
+#main > #sessions > ul > li > span > a {
+  font-size: 1.3em;
+  font-weight: bold;
+}
+#main > #sessions > ul > li > ul > li > span > a {
+  text-decoration: none;
+  padding-left: 20px;
+  padding-top: 10px;
 }

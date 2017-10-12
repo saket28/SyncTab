@@ -1,23 +1,18 @@
 {
     "extName": {
-        "message": "Chrome Extensions Box #DEMO",
+        "message": "SyncTab",
         "description": "Do not translate extension name"
     },
     "extDescr": {
-        "message": "Example of use Chrome Extensions Box",
+        "message": "Close and restore open tabs. Synced across all devices. This extension uses bookmarks to sync.",
         "description": "Short extension's description"
     },
 
-    "o_tabs_help": {
-        "message": "Help",
-        "description": "Tab name. Prefix 'o_' for options page"
+    "o_title": {
+        "message": "Settings"
     },
-    "o_tabs_main": {
-        "message": "Main",
-        "description": "Tab name"
-    },
-    "o_try": {
-        "message": "Try to change elements state. It will be saved to 'storage'. Also see Console (Ctrl+Shift+J)"
+    "o_label": {
+        "message": "Folder name:"
     },
     "o_saveBtn": {
         "message": "Save",
@@ -35,9 +30,5 @@
     "p_optionsBtn": {
         "message": "Options",
         "description": "Prefix 'p_' for popup page"
-    },
-    "p_helpBtn": {
-        "message": "Help",
-        "description": ""
     }
 }

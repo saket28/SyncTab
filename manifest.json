@@ -1,11 +1,11 @@
 {
-    "name": "__MSG_extName__",
-    "description": "__MSG_extDescr__",
-    "version": "0.1.1",
+    "name": "SyncTab",
+    "description": "Close and restore open tabs. Synced across all devices.",
+    "version": "1.0",
     "manifest_version": 2,
 
     "minimum_chrome_version": "25",
-    "default_locale": "ru",
+    "default_locale": "en",
     "icons": {
         "16": "img/ext_icons/16.png",
         "48": "img/ext_icons/48.png",
@@ -16,7 +16,7 @@
             "19": "img/ext_icons/19.png",
             "38": "img/ext_icons/38.png"
         },
-        "default_title": "__MSG_extName__",
+        "default_title": "SyncTab",
         "default_popup": "popup.html"
     },
 
@@ -32,7 +32,7 @@
 
     "permissions": [
         "storage",
-        "notifications",
-        "tabs"
+        "tabs",
+        "bookmarks"
     ]
 }

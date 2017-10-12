@@ -1,0 +1,68 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+body {
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  color: #4a4a4a;
+  margin-top: 36px;
+  width: 400px;
+}
+body a {
+  text-decoration: none;
+}
+
+header {
+  background-color: yellow;
+  padding: 5px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  font-weight: bold;
+  border-bottom: 2px solid #a9a9a9;
+}
+header #logo {
+  font-size: 20px;
+  font-family: "Courgette", cursive;
+}
+header #actions {
+  float: right;
+}
+header #actions button {
+  padding: 2px 3px;  
+}
+
+footer {
+  padding: 5px 20px 5px 5px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgb(224, 224, 224);
+}
+footer #search {
+  width: 100%;
+  padding: 5px;
+}
+
+#main {
+  min-height: 300px;
+  margin-top: -40px;
+  padding: 45px 5px 5px 5px;
+  overflow: auto;
+}
+
+.tab {
+  margin-bottom: 10px;
+}
+
+.tab-action {
+  margin-right: 10px;
+  color: white;
+}
+.tab-action:hover { 
+  color: inherit;
+}

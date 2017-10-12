@@ -1,49 +1,40 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="UTF-8"/>
-    <title>{{extName}}</title>
-    <link rel="stylesheet" type="text/css" href="css/options.css">
-    <link rel="stylesheet" type="text/css" href="lib/jsTabs/tabs.css">
+    <meta charset="UTF-8" />
+    <link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
+    <link rel="stylesheet" href="css/app.css">
 </head>
+
 <body>
-
-<div id=message_place>
-    <span id="error">{{o_error}}</span>
-    <span id="success">{{o_saved}}</span>
-</div>
-
-<div id="page">
     <header>
-        <img src="img/ext_icons/48.png" title="{{extName}}" alt="{{extName}}" width="48" height="48">
-        <strong>{{extName}}</strong>
+        <span id="logo">{{extName}}</span>
     </header>
 
-    <section id="main_tabs" class="tabs">
-        <div class="tabs_content">
-
-            <div id="main">
-                <p><strong>{{o_title}}</strong></p>
-                <hr>
-
-                <label>{{o_label}}</label><br>
-                <input type="text" data-storage="o_folder_path" value="{{o_folder_path_default}}"/>
-                <input type="submit" data-storage="o_folder_path" value="{{o_saveBtn}}"/>
-                <hr>
-            </div>
-        </div>
+    <section id="main">
+        <h2>Welcome!</h2>
+        <p>
+            This extension helps you manage tabs and reduce clutter.
+            When you have a number of tabs open, and want to close them so you can restore them later, use SyncTab.
+            SyncTab will create a new session and add the tabs. These SyncTab sessions are synchronized across all your chrom instances, including your phone.<br>
+            <br>
+            SyncTab uses Chrome's bookmarks behind the scene to manage its sessions. <br>
+            <br>
+            This project is opensource. Your contributions and support are welcome!<br>
+            https://github.com/saket28/SyncTab<br>
+            <br>
+            Hope you find this useful,<br>
+            Thanks.
+        </p>
+        <a href="popup.html" title="Saved Sessions" target="_blank">See all sessions &#x279a;</a>
     </section>
 
     <footer>
-        <p class="copyright">{{extName}}</p>
+        <script src="lib/jquery.min.js"></script>
+        <script src="js/helpers/localizer.js"></script>
+        <script src="js/app.js"></script>
     </footer>
-</div>
-<script src="js/helpers/localizer.js"></script>
-<script src="lib/jsTabs/tabs.js"></script>
-
-<script src="js/storage.js"></script>
-<script src="js/helpers/quick_options.js"></script>
-<!--<script src="lib/jquery.min.js"></script>-->
-<script src="js/options.js"></script>
 </body>
+
 </html>

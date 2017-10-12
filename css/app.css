@@ -49,30 +49,20 @@ footer #search {
 }
 
 #main {
-  min-height: 100%;
-  padding: 10px 5px 5px 5px;
+  min-height: 300px;
+  margin-top: -40px;
+  padding: 45px 5px 5px 5px;
   overflow: auto;
 }
-#main li > span > span {
-  padding-left: 10px;
-}
-#main > #sessions > ul {
-  padding-left: 0;
-}
-#main > #sessions > ul > li {
-  list-style: none;
+
+.tab {
   margin-bottom: 10px;
 }
-#main > #sessions > ul > li > ul {
-  list-style: none;
-  padding-left: 0px;
+
+.tab-action {
+  margin-right: 10px;
+  color: white;
 }
-#main > #sessions > ul > li > span > a {
-  font-size: 1.3em;
-  font-weight: bold;
-}
-#main > #sessions > ul > li > ul > li > span > a {
-  text-decoration: none;
-  padding-left: 20px;
-  padding-top: 10px;
+.tab-action:hover { 
+  color: inherit;
 }

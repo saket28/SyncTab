@@ -9,19 +9,16 @@ function _log(obj) {
 $(function () {
   var searchBox = $("#search");
   searchBox.change(function () {
-    sessionList.empty();
     showSessions(searchBox.val());
   });
 
   $("#saveButton").click(function () {
-    sessionList.empty();
     saveSession(function () {
       showSessions();
     });
   });
 
   $("#saveCloseButton").click(function () {
-    sessionList.empty();
     saveSession(function () {
       closeSession(function () {
         showSessions();
@@ -51,9 +48,8 @@ function init(callback) {
 }
 
 function showSessions(query) {
-  var bookmarkTreeNodes = chrome.bookmarks.getSubTree(rootFolderId, function (
-    bookmarkTreeNodes
-  ) {
+  sessionList.empty();
+  var bookmarkTreeNodes = chrome.bookmarks.getSubTree(rootFolderId, function (bookmarkTreeNodes) {
     sessionList.append(_dumpTreeNodes(bookmarkTreeNodes[0].children, query));
   });
 }
@@ -83,66 +79,67 @@ function closeSession(callback) {
 }
 
 function _dumpTreeNodes(bookmarkNodes, query) {
-  var list = $("<ul>");
-  var i;
-  for (i = 0; i < bookmarkNodes.length; i++) {
-    list.append(_dumpNode(bookmarkNodes[i], query));
-  }
-  return list;
+  $.each(bookmarkNodes, function(i, session){
+    sessionList.append(_addSessionNode(session));
+    $.each(session.children, function(j, tab){
+      if (!query || String(tab.title).indexOf(query) != -1) {
+        sessionList.append(_addTabNode(tab));
+      }
+    });
+    sessionList.append($("<hr>"));
+  });
 }
 
-function _dumpNode(bookmarkNode, query) {
-  if (bookmarkNode.title) {
-    if (query && !bookmarkNode.children) {
-      if (String(bookmarkNode.title).indexOf(query) == -1) {
-        return $("<span></span>");
-      }
-    }
-    var nodeSpan = $("<span>");
-    // anchor
-    var anchor = $("<a>");
-    anchor.attr("href", bookmarkNode.url);
-    anchor.text(bookmarkNode.title);
-    anchor.click(function () {
-      chrome.tabs.create({ url: bookmarkNode.url });
+function _addSessionNode(sessionNode) {
+  var div = $("<h3>", { class: 'session' });
+  div.append($("<a>", {"href": '#'})
+   .html(sessionNode.title + " &#x279f;")
+   .click(function () {
+      chrome.bookmarks.getSubTree(String(sessionNode.id), function (tabNodes) {
+      $.each(tabNodes[0].children, function (x, tabNode) {
+        if (tabNode.url) {
+          chrome.tabs.create({ url: tabNode.url });
+        }
+      });
+      chrome.bookmarks.removeTree(String(sessionNode.id));
+      window.showSessions();
     });
-    nodeSpan.append(anchor);
+   })
+  );
+  return div;
+}
 
-    // options on hover
-    var optionSpan = bookmarkNode.children
-      ? $('<span>[<a href="#" id="restorelink">Restore</a>]</span>')
-      : $('<span>[<a href="#" id="deletelink">Delete</a>]</span>');
-    nodeSpan.hover(
-      function () {
-        nodeSpan.append(optionSpan);
-        $("#restorelink").click(function () {
-          chrome.bookmarks.getSubTree(String(bookmarkNode.id), function (bookmarkTreeNodes) {
-            $.each(bookmarkTreeNodes[0].children, function (x, node) {
-              if (node.url) {
-                chrome.tabs.create({ url: node.url });
-              }
-            });
-          });
-          chrome.bookmarks.removeTree(String(bookmarkNode.id));
-          sessionList.empty();
-          window.showSessions();
-        });
-        $("#deletelink").click(function () {
-          chrome.bookmarks.remove(String(bookmarkNode.id));
-          nodeSpan.parent().remove();
-        });
-      },
-      // unhover
-      function () {
-        optionSpan.remove();
+function _addTabNode(tabNode) {
+  var div = $("<div>", { class: 'tab' });
+
+  div.append($("<a>", {"href": '#', "class": "tab-action"})
+  .html('&#x2718;')
+  .click(function () {
+    chrome.bookmarks.remove(String(tabNode.id));
+    window.showSessions();
+  })
+);
+
+div.append($("<a>", {"href": "#"})
+    .text(tabNode.title)
+    .click(function () {
+      chrome.tabs.create({ url: tabNode.url });
+    })
+  );
+
+  return div;
+}
+
+function restoreSession(sessionId) {
+  chrome.bookmarks.getSubTree(sessionId, function (bookmarkTreeNodes) {
+    $.each(bookmarkTreeNodes[0].children, function (x, node) {
+      if (node.url) {
+        chrome.tabs.create({ url: node.url });
       }
-    );
-  }
-  var li = $(bookmarkNode.title ? "<li>" : "<div>").append(nodeSpan);
-  if (bookmarkNode.children && bookmarkNode.children.length > 0) {
-    li.append(_dumpTreeNodes(bookmarkNode.children, query));
-  }
-  return li;
+    });
+  });
+  chrome.bookmarks.removeTree(sessionId);
+  showSessions();
 }
 
 function _datestring() {
